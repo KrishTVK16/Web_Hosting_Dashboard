@@ -1,0 +1,1153 @@
+/* ===================================
+   CROWN ACCENT FLOW DESIGN SYSTEM
+   Web Hosting Dashboard UI
+   =================================== */
+
+/* CSS Custom Properties - Design Tokens */
+:root {
+    /* Gradient - LOCKED */
+    --gradient-crown: linear-gradient(135deg, #000000, #3A0000, #B8962E);
+    
+    /* Background Colors */
+    --bg-panel: rgba(35, 35, 35, 0.85);
+    --bg-hover: rgba(58, 0, 0, 0.4);
+    
+    /* Border Colors */
+    --border-default: rgba(184, 150, 46, 0.3);
+    --border-light: rgba(184, 150, 46, 0.15);
+    
+    /* Accent Colors */
+    --accent-gold: #B8962E;
+    --accent-gold-hover: #D4B85A;
+    --accent-red: #DC2626;
+    --accent-red-hover: #EF4444;
+    
+    /* Typography Colors */
+    --text-heading: #FFFFFF;
+    --text-body: #F0F0F0;
+    --text-meta: #D0D0D0;
+    --text-muted: #B0B0B0;
+    
+    /* Status Colors */
+    --status-success: #10B981;
+    --status-success-bg: rgba(16, 185, 129, 0.2);
+    --status-warning: #F59E0B;
+    --status-warning-bg: rgba(245, 158, 11, 0.2);
+    --status-error: #EF4444;
+    --status-error-bg: rgba(239, 68, 68, 0.2);
+    --status-info: #3B82F6;
+    --status-info-bg: rgba(59, 130, 246, 0.2);
+    
+    /* Spacing */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.8);
+    
+    /* Glass Effect */
+    --glass-bg: rgba(20, 5, 5, 0.9);
+    --glass-border: rgba(184, 150, 46, 0.35);
+}
+
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Helvetica Neue', sans-serif;
+    background: var(--gradient-crown);
+    background-attachment: fixed;
+    color: var(--text-body);
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* Diagonal Gold Accent Stripes Pattern */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(184, 150, 46, 0.03) 40px,
+        rgba(184, 150, 46, 0.03) 41px
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ===================================
+   TYPOGRAPHY
+   =================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-heading);
+    font-weight: 600;
+    margin: 0;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 8px;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: var(--text-meta);
+    margin: 0;
+}
+
+.panel-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin: 0;
+}
+
+/* ===================================
+   PAGE HEADER - GLASS EFFECT ✅
+   =================================== */
+
+.page-header {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+/* ===================================
+   NAVIGATION BAR
+   =================================== */
+
+.navbar {
+    background: rgba(10, 10, 10, 0.8) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-default);
+    box-shadow: var(--shadow-md);
+    padding: 12px 0;
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar-brand {
+    font-size: 20px;
+    color: var(--accent-gold) !important;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(184, 150, 46, 0.3);
+}
+
+.navbar .nav-link {
+    color: var(--text-body);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.2s;
+    border-radius: var(--radius-sm);
+}
+
+.navbar .nav-link:hover {
+    color: var(--accent-gold);
+    background: rgba(184, 150, 46, 0.1);
+}
+
+.navbar-toggler {
+    border-color: var(--border-default);
+    color: var(--text-body);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ===================================
+   CONTEXTUAL TABS NAVIGATION
+   =================================== */
+
+.tabs-wrapper {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-default);
+    margin-bottom: 0;
+    position: relative;
+    z-index: 100;
+}
+
+.dashboard-tabs {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.dashboard-tabs .nav-link {
+    color: var(--text-body);
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 16px 24px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+    border-radius: 0;
+    position: relative;
+}
+
+.dashboard-tabs .nav-link:hover {
+    color: var(--accent-gold);
+    background-color: rgba(184, 150, 46, 0.1);
+    border-bottom-color: var(--border-light);
+}
+
+.dashboard-tabs .nav-link.active {
+    color: var(--accent-red) !important;
+    background-color: rgba(220, 38, 38, 0.15) !important;
+    border-bottom-color: var(--accent-red) !important;
+    font-weight: 600;
+}
+
+.dashboard-tabs .nav-link i {
+    margin-right: 6px;
+}
+
+/* ===================================
+   MAIN CONTENT AREA
+   =================================== */
+
+.main-content {
+    min-height: calc(100vh - 120px);
+    position: relative;
+    z-index: 1;
+}
+
+/* ===================================
+   SUMMARY STRIP - GLASS EFFECT ✅
+   =================================== */
+
+.summary-strip {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+}
+
+/* ===================================
+   METRIC CARDS - GLASS EFFECT
+   =================================== */
+
+.metric-card {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: all 0.3s;
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184, 150, 46, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.metric-card:hover::before {
+    left: 100%;
+}
+
+.metric-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+}
+
+.metric-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-md);
+    background: rgba(184, 150, 46, 0.2);
+    border: 1px solid var(--accent-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+    box-shadow: 0 0 15px rgba(184, 150, 46, 0.3);
+}
+
+.metric-icon.status-success {
+    color: var(--status-success);
+    background: var(--status-success-bg);
+    border-color: var(--status-success);
+}
+
+.metric-content {
+    flex: 1;
+}
+
+.metric-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-heading);
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.metric-label {
+    font-size: 13px;
+    color: var(--text-meta);
+    font-weight: 500;
+}
+
+/* ===================================
+   PANELS - GLASS EFFECT
+   =================================== */
+
+.panel {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+    opacity: 0.5;
+}
+
+.panel-header {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.panel-body {
+    padding: var(--spacing-xl);
+    background-color: transparent;
+}
+
+.panel-body.p-0 {
+    background-color: transparent;
+}
+
+/* ===================================
+   INFO BANNER - GLASS EFFECT ✅
+   =================================== */
+
+.info-banner {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.info-banner-icon {
+    font-size: 24px;
+    color: var(--accent-gold);
+    flex-shrink: 0;
+    text-shadow: 0 0 10px rgba(184, 150, 46, 0.5);
+}
+
+.info-banner-content {
+    font-size: 14px;
+    color: var(--text-body);
+    flex: 1;
+}
+
+.info-banner strong {
+    color: var(--text-heading);
+    font-weight: 600;
+}
+
+/* ===================================
+   DATA TABLES - GLASS EFFECT
+   =================================== */
+
+.data-table {
+    margin-bottom: 0;
+    font-size: 14px;
+    color: var(--text-body);
+    background-color: transparent !important;
+    border-color: var(--border-light);
+}
+
+.data-table.table,
+.table.data-table {
+    background-color: transparent !important;
+    border-color: var(--border-light);
+}
+
+.table.data-table tbody,
+.data-table.table tbody {
+    background-color: transparent !important;
+}
+
+.data-table tbody {
+    background-color: transparent;
+}
+
+.data-table thead {
+    background: linear-gradient(135deg, rgba(40, 10, 10, 0.95), rgba(50, 15, 15, 0.9));
+    border-bottom: 2px solid var(--border-default);
+}
+
+.data-table thead th {
+    font-weight: 600;
+    color: var(--text-heading);
+    padding: 14px 16px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border: none;
+    color:#1f1c1c;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.2s;
+    background-color: transparent;
+}
+
+.data-table tbody tr:nth-child(odd) {
+    background-color: transparent;
+}
+
+.data-table tbody tr:hover {
+    background: rgba(184, 150, 46, 0.15);
+    box-shadow: inset 0 0 20px rgba(184, 150, 46, 0.1);
+}
+
+.data-table tbody td {
+    padding: 16px;
+    color: var(--text-body);
+    vertical-align: middle;
+    border: none;
+}
+
+.data-table tbody tr td strong {
+    color: var(--text-heading);
+    font-weight: 600;
+}
+.data-table tbody tr td,
+.data-table tbody tr td strong{
+    color:#360e0e;
+}
+
+/* Zebra striping for logs table */
+.logs-table tbody tr:nth-child(even) {
+    background: rgba(25, 8, 8, 0.5) !important;
+}
+
+.logs-table tbody tr:nth-child(even):hover {
+    background: rgba(184, 150, 46, 0.2);
+}
+
+/* Additional Crown Accent Flow Styles */
+.dropdown-menu {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===================================
+   AUTHENTICATION MODALS
+   =================================== */
+
+.auth-modal {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-body);
+}
+
+.auth-modal .modal-header {
+    border-bottom: 1px solid var(--border-default);
+    background: rgba(184, 150, 46, 0.05);
+}
+
+.auth-modal .modal-title {
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.auth-modal .btn-close {
+    filter: invert(1);
+    opacity: 0.7;
+}
+
+.auth-modal .btn-close:hover {
+    opacity: 1;
+}
+
+.auth-modal .modal-body {
+    padding: var(--spacing-xl);
+}
+
+
+.auth-modal .form-control {
+    background: rgba(35, 35, 35, 0.8);
+    border-color: var(--border-default);
+    color: var(--text-body);
+    padding: 10px 14px;
+    direction: rtl;
+}
+
+.auth-modal .form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+    text-align: right;
+}
+
+.auth-modal .form-control:focus {
+    background: rgba(45, 45, 45, 0.9);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(184, 150, 46, 0.2);
+    color: var(--text-body);
+    direction: rtl;
+}
+
+.auth-modal .form-control:focus::placeholder {
+    opacity: 0.5;
+}
+
+.auth-modal .form-check-input {
+    background-color: rgba(35, 35, 35, 0.8);
+    border-color: var(--border-default);
+}
+
+.auth-modal .form-check-input:checked {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+.auth-modal .form-check-label {
+    color: var(--text-body);
+}
+
+.auth-modal .form-switch .form-check-input {
+    width: 3em;
+    cursor: pointer;
+}
+
+.auth-modal .form-label {
+    color: var(--text-heading);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.auth-modal .form-select,
+.auth-modal .form-control {
+    background: rgba(35, 35, 35, 0.8);
+    border-color: var(--border-default);
+    color: var(--text-body);
+}
+
+.auth-modal .form-select:focus,
+.auth-modal .form-control:focus {
+    background: rgba(45, 45, 45, 0.9);
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(184, 150, 46, 0.2);
+    color: var(--text-body);
+}
+
+.auth-modal .card {
+    background: rgba(35, 35, 35, 0.8);
+    border-color: var(--border-default);
+    color: var(--text-body);
+}
+
+.auth-modal .table {
+    color: var(--text-body);
+}
+
+.auth-modal .table th {
+    color: var(--text-heading);
+    border-color: var(--border-light);
+}
+
+.auth-modal .table td {
+    border-color: var(--border-light);
+}
+
+.auth-modal a {
+    color: var(--accent-gold);
+    transition: color 0.2s;
+}
+
+.auth-modal a:hover {
+    color: var(--accent-gold-hover);
+}
+
+.auth-switch-text {
+    color: var(--text-body);
+}
+
+.auth-modal hr {
+    border-color: var(--border-default);
+    opacity: 0.3;
+}
+
+.dropdown-item {
+    color: var(--text-body);
+    transition: all 0.2s;
+}
+
+.dropdown-item:hover {
+    background: rgba(184, 150, 46, 0.2);
+    color: var(--accent-gold);
+}
+
+.dropdown-divider {
+    border-color: var(--border-default);
+}
+
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* ===================================
+   STATUS BADGES - SOLID COLORS
+   =================================== */
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: center;
+}
+
+.status-badge.status-success {
+    background: var(--status-success-bg);
+    color: var(--status-success);
+    border: 1px solid var(--status-success);
+}
+
+.status-badge.status-warning {
+    background: var(--status-warning-bg);
+    color: var(--status-warning);
+    border: 1px solid var(--status-warning);
+}
+
+.status-badge.status-error {
+    background: var(--status-error-bg);
+    color: var(--status-error);
+    border: 1px solid var(--status-error);
+}
+
+.status-badge.status-info {
+    background: var(--status-info-bg);
+    color: var(--status-info);
+    border: 1px solid var(--status-info);
+}
+
+/* ===================================
+   BUTTONS
+   =================================== */
+
+.btn {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #000000;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(184, 150, 46, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--accent-gold-hover);
+    border-color: var(--accent-gold-hover);
+    box-shadow: 0 0 20px rgba(184, 150, 46, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-outline-primary {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: rgba(184, 150, 46, 0.2);
+    border-color: var(--accent-gold-hover);
+    color: var(--accent-gold-hover);
+    box-shadow: 0 0 15px rgba(184, 150, 46, 0.3);
+}
+
+.btn-outline-secondary {
+    color: var(--text-body);
+    border-color: var(--border-default);
+    background: transparent;
+}
+
+.btn-outline-secondary:hover {
+    background: rgba(184, 150, 46, 0.2);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+}
+
+.btn-outline-success {
+    color: var(--status-success);
+    border-color: var(--status-success);
+    background: transparent;
+}
+
+.btn-outline-success:hover {
+    background: var(--status-success-bg);
+    border-color: var(--status-success);
+    color: var(--status-success);
+}
+
+.btn-outline-warning {
+    color: var(--status-warning);
+    border-color: var(--status-warning);
+    background: transparent;
+}
+
+.btn-outline-warning:hover {
+    background: var(--status-warning-bg);
+    border-color: var(--status-warning);
+    color: var(--status-warning);
+}
+
+.btn-action {
+    justify-content: flex-start;
+    text-align: left;
+    font-weight: 500;
+}
+
+/* ===================================
+   ACTIVITY FEED
+   =================================== */
+
+.activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s;
+}
+
+.activity-item:hover {
+    background: rgba(184, 150, 46, 0.1);
+}
+
+.activity-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.activity-icon.status-success {
+    background: var(--status-success-bg);
+    color: var(--status-success);
+    border: 1px solid var(--status-success);
+}
+
+.activity-icon.status-warning {
+    background: var(--status-warning-bg);
+    color: var(--status-warning);
+    border: 1px solid var(--status-warning);
+}
+
+.activity-icon.status-info {
+    background: var(--status-info-bg);
+    color: var(--status-info);
+    border: 1px solid var(--status-info);
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-text {
+    font-size: 14px;
+    color: var(--text-body);
+    margin-bottom: 4px;
+}
+
+.activity-text strong {
+    color: var(--text-heading);
+    font-weight: 600;
+}
+
+.activity-time {
+    font-size: 12px;
+    color: var(--text-meta);
+}
+
+/* ===================================
+   SEARCH BOX
+   =================================== */
+
+.search-box {
+    max-width: 300px;
+}
+
+.search-box .form-control {
+    font-size: 14px;
+    background: rgba(35, 35, 35, 0.8);
+    border-color: var(--border-default);
+    color: var(--text-heading) !important;
+}
+
+.search-box .form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.search-box .form-control:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(184, 150, 46, 0.2);
+    background: rgba(45, 45, 45, 0.9);
+    color: var(--text-heading) !important;
+}
+
+.search-box .form-control:focus::placeholder {
+    opacity: 0.5;
+}
+
+.form-control-sm {
+    color: var(--text-heading) !important;
+}
+
+.form-control-sm::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.form-control-sm:focus {
+    color: var(--text-heading) !important;
+}
+
+.form-control-sm:focus::placeholder {
+    opacity: 0.5;
+}
+
+/* ===================================
+   RESOURCE MONITORING
+   =================================== */
+
+.resource-chart {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resource-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--border-light);
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.stat-label {
+    color: var(--text-meta);
+    font-weight: 500;
+}
+
+.stat-value {
+    color: var(--text-heading);
+    font-weight: 600;
+}
+
+/* ===================================
+   HEALTH INDICATORS
+   =================================== */
+
+.health-indicator {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    transition: all 0.3s;
+    box-shadow: var(--shadow-sm);
+}
+
+.health-indicator:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+    border-color: var(--accent-gold);
+}
+
+.health-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto var(--spacing-sm);
+}
+
+.health-icon.status-success {
+    background: var(--status-success-bg);
+    color: var(--status-success);
+    border: 2px solid var(--status-success);
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.health-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-heading);
+    margin-bottom: 4px;
+}
+
+.health-status {
+    font-size: 13px;
+    color: var(--text-meta);
+}
+
+/* ===================================
+   FORM CONTROLS
+   =================================== */
+
+.form-control,
+.form-select {
+    font-size: 14px;
+    background: rgba(35, 35, 35, 0.8);
+    border-color: var(--border-default);
+    color: var(--text-heading) !important;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(184, 150, 46, 0.2);
+    background: rgba(45, 45, 45, 0.9);
+    color: var(--text-heading) !important;
+}
+
+.form-control:focus::placeholder {
+    opacity: 0.5;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+
+@media (max-width: 768px) {
+    .page-header {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .summary-strip {
+        padding: var(--spacing-md);
+    }
+    
+    .panel-header,
+    .panel-body {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .dashboard-tabs .nav-link {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+    
+    .metric-card {
+        padding: var(--spacing-md);
+    }
+    
+    .metric-value {
+        font-size: 24px;
+    }
+    
+    .metric-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+    }
+    
+    .search-box {
+        max-width: 100%;
+        margin-top: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-tabs .nav-link {
+        padding: 10px 12px;
+        font-size: 12px;
+    }
+    
+    .dashboard-tabs .nav-link i {
+        display: none;
+    }
+    
+    .data-table {
+        font-size: 12px;
+    }
+    
+    .data-table thead th,
+    .data-table tbody td {
+        padding: 10px 8px;
+    }
+    
+    .btn-sm {
+        font-size: 11px;
+        padding: 4px 8px;
+    }
+}
+
+/* ===================================
+   TOAST NOTIFICATIONS
+   =================================== */
+
+.alert {
+    background: linear-gradient(135deg, rgba(20, 5, 5, 0.95), rgba(30, 8, 8, 0.9));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--text-body);
+    padding: 12px 16px;
+    box-shadow: var(--shadow-lg);
+}
+
+.alert-success {
+    border-color: var(--status-success);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(20, 5, 5, 0.95));
+}
+
+.alert-danger {
+    border-color: var(--status-error);
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(20, 5, 5, 0.95));
+}
+
+.alert-info {
+    border-color: var(--status-info);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(20, 5, 5, 0.95));
+}
+
+/* ===================================
+   UTILITIES
+   =================================== */
+
+.text-heading {
+    color: var(--text-heading);
+}
+
+.text-body {
+    color: var(--text-body);
+}
+
+.text-meta {
+    color: var(--text-meta);
+}
+
+.text-muted {
+    color: var(--text-muted);
+}

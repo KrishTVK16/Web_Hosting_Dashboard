@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Hosting Dashboard - Control Panel</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark border-bottom sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-hdd-rack-fill me-2 fs-4"></i>
+                <span class="fw-bold">HostPanel</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal"><i class="bi bi-box-arrow-in-right"></i> Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signupModal"><i class="bi bi-person-plus"></i> Sign Up</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i> Account
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#notificationsModal"><i class="bi bi-bell me-2"></i> Notifications</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#settingsModal"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#billingModal"><i class="bi bi-credit-card me-2"></i> Billing</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contextual Tabs Navigation -->
+    <div class="tabs-wrapper">
+        <div class="container-fluid px-4">
+            <ul class="nav nav-tabs dashboard-tabs" id="dashboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">
+                        <i class="bi bi-grid"></i> Overview
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="hosting-tab" data-bs-toggle="tab" data-bs-target="#hosting" type="button" role="tab">
+                        <i class="bi bi-server"></i> Hosting Services
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="domains-tab" data-bs-toggle="tab" data-bs-target="#domains" type="button" role="tab">
+                        <i class="bi bi-globe"></i> Domains
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="server-tab" data-bs-toggle="tab" data-bs-target="#server" type="button" role="tab">
+                        <i class="bi bi-activity"></i> Server Status
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="logs-tab" data-bs-toggle="tab" data-bs-target="#logs" type="button" role="tab">
+                        <i class="bi bi-file-text"></i> Activity Logs
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container-fluid px-4 py-4">
+            <div class="tab-content" id="dashboardTabContent">
+                
+                <!-- Overview Tab -->
+                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <h1 class="page-title">Dashboard Overview</h1>
+                        <p class="page-subtitle">Monitor your hosting infrastructure at a glance</p>
+                    </div>
+
+                    <!-- Summary Strip with Key Metrics -->
+                    <div class="summary-strip">
+                        <div class="row g-3">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="bi bi-server"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">12</div>
+                                        <div class="metric-label">Active Services</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="bi bi-globe"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">28</div>
+                                        <div class="metric-label">Domains</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="metric-card">
+                                    <div class="metric-icon status-success">
+                                        <i class="bi bi-check-circle"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">99.9%</div>
+                                        <div class="metric-label">Uptime</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="metric-card">
+                                    <div class="metric-icon">
+                                        <i class="bi bi-hdd"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value">245 GB</div>
+                                        <div class="metric-label">Storage Used</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions & Recent Activity -->
+                    <div class="row mt-4">
+                        <div class="col-lg-4">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <h5 class="panel-title">Quick Actions</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-outline-primary btn-action" data-bs-toggle="modal" data-bs-target="#addServiceModal">
+                                            <i class="bi bi-plus-circle me-2"></i>Add New Service
+                                        </button>
+                                        <button class="btn btn-outline-primary btn-action" data-bs-toggle="modal" data-bs-target="#registerDomainModal">
+                                            <i class="bi bi-globe me-2"></i>Register Domain
+                                        </button>
+                                        <button class="btn btn-outline-primary btn-action" data-bs-toggle="modal" data-bs-target="#viewInvoicesModal">
+                                            <i class="bi bi-file-earmark-text me-2"></i>View Invoices
+                                        </button>
+                                        <button class="btn btn-outline-primary btn-action" data-bs-toggle="modal" data-bs-target="#contactSupportModal">
+                                            <i class="bi bi-headset me-2"></i>Contact Support
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-8">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <h5 class="panel-title">Recent Activity</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="activity-feed">
+                                        <div class="activity-item">
+                                            <div class="activity-icon status-success">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                            <div class="activity-details">
+                                                <div class="activity-text">SSL certificate renewed for <strong>example.com</strong></div>
+                                                <div class="activity-time">2 hours ago</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon status-info">
+                                                <i class="bi bi-arrow-up-circle-fill"></i>
+                                            </div>
+                                            <div class="activity-details">
+                                                <div class="activity-text">Storage upgraded to 500GB for <strong>hosting-pro-01</strong></div>
+                                                <div class="activity-time">5 hours ago</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon status-warning">
+                                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                            </div>
+                                            <div class="activity-details">
+                                                <div class="activity-text">Domain <strong>testsite.net</strong> expires in 15 days</div>
+                                                <div class="activity-time">1 day ago</div>
+                                            </div>
+                                        </div>
+                                        <div class="activity-item">
+                                            <div class="activity-icon status-success">
+                                                <i class="bi bi-check-circle-fill"></i>
+                                            </div>
+                                            <div class="activity-details">
+                                                <div class="activity-text">Backup completed for all services</div>
+                                                <div class="activity-time">2 days ago</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Notice Banner -->
+                    <div class="info-banner mt-4">
+                        <div class="info-banner-icon">
+                            <i class="bi bi-info-circle"></i>
+                        </div>
+                        <div class="info-banner-content">
+                            <strong>Scheduled Maintenance:</strong> Server upgrades planned for December 20, 2025, 02:00-04:00 UTC. Expected downtime: 15 minutes.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hosting Services Tab -->
+                <div class="tab-pane fade" id="hosting" role="tabpanel">
+                    <div class="page-header">
+                        <h1 class="page-title">Hosting Services</h1>
+                        <p class="page-subtitle">Manage your active hosting accounts</p>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header d-flex justify-content-between align-items-center">
+                            <h5 class="panel-title">Active Hosting Accounts</h5>
+                            <div class="search-box">
+                                <input type="text" class="form-control" placeholder="Search services..." id="hostingSearch">
+                            </div>
+                        </div>
+                        <div class="panel-body p-0">
+                            <div class="table-responsive">
+                                <table class="table data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Service Name</th>
+                                            <th>Plan</th>
+                                            <th>Status</th>
+                                            <th>Created</th>
+                                            <th>Renewal</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>hosting-pro-01</strong></td>
+                                            <td>Business Pro</td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td>Jan 15, 2024</td>
+                                            <td>Jan 15, 2026</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageServiceModal" data-service="hosting-pro-01" data-plan="Business Pro" data-status="Active" data-created="Jan 15, 2024" data-renewal="Jan 15, 2026">Manage</button>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#upgradeServiceModal" data-service="hosting-pro-01" data-plan="Business Pro">Upgrade</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>hosting-standard-02</strong></td>
+                                            <td>Standard</td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td>Mar 10, 2024</td>
+                                            <td>Mar 10, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageServiceModal" data-service="hosting-standard-02" data-plan="Standard" data-status="Active" data-created="Mar 10, 2024" data-renewal="Mar 10, 2025">Manage</button>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#upgradeServiceModal" data-service="hosting-standard-02" data-plan="Standard">Upgrade</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>hosting-starter-03</strong></td>
+                                            <td>Starter</td>
+                                            <td><span class="status-badge status-warning">Expiring Soon</span></td>
+                                            <td>Nov 20, 2023</td>
+                                            <td>Dec 20, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageServiceModal" data-service="hosting-starter-03" data-plan="Starter" data-status="Expiring Soon" data-created="Nov 20, 2023" data-renewal="Dec 20, 2025">Manage</button>
+                                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#renewServiceModal" data-service="hosting-starter-03" data-plan="Starter">Renew</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>hosting-enterprise-04</strong></td>
+                                            <td>Enterprise</td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td>Jun 5, 2024</td>
+                                            <td>Jun 5, 2027</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageServiceModal" data-service="hosting-enterprise-04" data-plan="Enterprise" data-status="Active" data-created="Jun 5, 2024" data-renewal="Jun 5, 2027">Manage</button>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#upgradeServiceModal" data-service="hosting-enterprise-04" data-plan="Enterprise">Upgrade</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>hosting-dev-05</strong></td>
+                                            <td>Developer</td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td>Aug 12, 2024</td>
+                                            <td>Aug 12, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageServiceModal" data-service="hosting-dev-05" data-plan="Developer" data-status="Active" data-created="Aug 12, 2024" data-renewal="Aug 12, 2025">Manage</button>
+                                                <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#upgradeServiceModal" data-service="hosting-dev-05" data-plan="Developer">Upgrade</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domains Tab -->
+                <div class="tab-pane fade" id="domains" role="tabpanel">
+                    <div class="page-header">
+                        <h1 class="page-title">Domain Management</h1>
+                        <p class="page-subtitle">Monitor and manage your registered domains</p>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header d-flex justify-content-between align-items-center">
+                            <h5 class="panel-title">Registered Domains</h5>
+                            <div class="search-box">
+                                <input type="text" class="form-control" placeholder="Search domains..." id="domainSearch">
+                            </div>
+                        </div>
+                        <div class="panel-body p-0">
+                            <div class="table-responsive">
+                                <table class="table data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Domain Name</th>
+                                            <th>DNS Status</th>
+                                            <th>SSL Status</th>
+                                            <th>Registered</th>
+                                            <th>Expires</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>example.com</strong></td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td><span class="status-badge status-success">Valid</span></td>
+                                            <td>Jan 10, 2020</td>
+                                            <td>Jan 10, 2026</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageDNSModal" data-domain="example.com">Manage DNS</button>
+                                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#renewDomainModal" data-domain="example.com">Renew</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>myapp.io</strong></td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td><span class="status-badge status-success">Valid</span></td>
+                                            <td>Mar 15, 2023</td>
+                                            <td>Mar 15, 2026</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageDNSModal" data-domain="myapp.io">Manage DNS</button>
+                                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#renewDomainModal" data-domain="myapp.io">Renew</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>testsite.net</strong></td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td><span class="status-badge status-warning">Expiring Soon</span></td>
+                                            <td>Dec 1, 2024</td>
+                                            <td>Dec 31, 2025</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageDNSModal" data-domain="testsite.net">Manage DNS</button>
+                                                <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#renewSSLModal" data-domain="testsite.net">Renew SSL</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>portfolio.dev</strong></td>
+                                            <td><span class="status-badge status-success">Active</span></td>
+                                            <td><span class="status-badge status-success">Valid</span></td>
+                                            <td>Jul 20, 2024</td>
+                                            <td>Jul 20, 2027</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#manageDNSModal" data-domain="portfolio.dev">Manage DNS</button>
+                                                <button class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#renewDomainModal" data-domain="portfolio.dev">Renew</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Server Status Tab -->
+                <div class="tab-pane fade" id="server" role="tabpanel">
+                    <div class="page-header">
+                        <h1 class="page-title">Server Status</h1>
+                        <p class="page-subtitle">Real-time monitoring of server health and resources</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <h5 class="panel-title">CPU Usage</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="resource-chart">
+                                        <canvas id="cpuChart"></canvas>
+                                    </div>
+                                    <div class="resource-stats mt-3">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Current:</span>
+                                            <span class="stat-value">32%</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Average:</span>
+                                            <span class="stat-value">28%</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Peak:</span>
+                                            <span class="stat-value">65%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <h5 class="panel-title">Memory Usage</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="resource-chart">
+                                        <canvas id="memoryChart"></canvas>
+                                    </div>
+                                    <div class="resource-stats mt-3">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Used:</span>
+                                            <span class="stat-value">12.4 GB</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Available:</span>
+                                            <span class="stat-value">19.6 GB</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total:</span>
+                                            <span class="stat-value">32 GB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="panel">
+                                <div class="panel-header">
+                                    <h5 class="panel-title">Storage Usage</h5>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="resource-chart">
+                                        <canvas id="storageChart"></canvas>
+                                    </div>
+                                    <div class="resource-stats mt-3">
+                                        <div class="stat-item">
+                                            <span class="stat-label">Used:</span>
+                                            <span class="stat-value">245 GB</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Available:</span>
+                                            <span class="stat-value">255 GB</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <span class="stat-label">Total:</span>
+                                            <span class="stat-value">500 GB</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel mt-4">
+                        <div class="panel-header">
+                            <h5 class="panel-title">Server Health Indicators</h5>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="health-indicator">
+                                        <div class="health-icon status-success">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </div>
+                                        <div class="health-label">Web Server</div>
+                                        <div class="health-status">Operational</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="health-indicator">
+                                        <div class="health-icon status-success">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </div>
+                                        <div class="health-label">Database</div>
+                                        <div class="health-status">Operational</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="health-indicator">
+                                        <div class="health-icon status-success">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </div>
+                                        <div class="health-label">Mail Server</div>
+                                        <div class="health-status">Operational</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="health-indicator">
+                                        <div class="health-icon status-success">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                        </div>
+                                        <div class="health-label">FTP Server</div>
+                                        <div class="health-status">Operational</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Logs Tab -->
+                <div class="tab-pane fade" id="logs" role="tabpanel">
+                    <div class="page-header">
+                        <h1 class="page-title">Activity Logs</h1>
+                        <p class="page-subtitle">Track all system events and changes</p>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header d-flex justify-content-between align-items-center">
+                            <h5 class="panel-title">Recent Events</h5>
+                            <div class="d-flex gap-2">
+                                <select class="form-select form-select-sm" id="logFilter">
+                                    <option value="all">All Events</option>
+                                    <option value="success">Success</option>
+                                    <option value="warning">Warnings</option>
+                                    <option value="error">Errors</option>
+                                </select>
+                                <input type="text" class="form-control form-control-sm" placeholder="Search logs..." id="logSearch">
+                            </div>
+                        </div>
+                        <div class="panel-body p-0">
+                            <div class="table-responsive">
+                                <table class="table data-table logs-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 180px;">Timestamp</th>
+                                            <th style="width: 120px;">Severity</th>
+                                            <th style="width: 200px;">Service</th>
+                                            <th>Event Description</th>
+                                            <th style="width: 100px;">User</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>2025-12-16 18:45:23</td>
+                                            <td><span class="status-badge status-success">Info</span></td>
+                                            <td>SSL Management</td>
+                                            <td>SSL certificate renewed for example.com</td>
+                                            <td>System</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-16 15:30:12</td>
+                                            <td><span class="status-badge status-info">Notice</span></td>
+                                            <td>hosting-pro-01</td>
+                                            <td>Storage capacity upgraded from 250GB to 500GB</td>
+                                            <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-16 14:22:45</td>
+                                            <td><span class="status-badge status-warning">Warning</span></td>
+                                            <td>Domain Management</td>
+                                            <td>Domain testsite.net SSL certificate expiring in 15 days</td>
+                                            <td>System</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-16 10:15:33</td>
+                                            <td><span class="status-badge status-success">Info</span></td>
+                                            <td>Backup Service</td>
+                                            <td>Automated backup completed successfully for all services</td>
+                                            <td>System</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-15 22:05:18</td>
+                                            <td><span class="status-badge status-success">Info</span></td>
+                                            <td>hosting-dev-05</td>
+                                            <td>New hosting account created and provisioned</td>
+                                            <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-15 19:40:55</td>
+                                            <td><span class="status-badge status-info">Notice</span></td>
+                                            <td>DNS Management</td>
+                                            <td>DNS records updated for portfolio.dev</td>
+                                            <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-15 16:28:42</td>
+                                            <td><span class="status-badge status-success">Info</span></td>
+                                            <td>Mail Server</td>
+                                            <td>Email forwarding configured for support@example.com</td>
+                                            <td>admin</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2025-12-15 12:12:30</td>
+                                            <td><span class="status-badge status-warning">Warning</span></td>
+                                            <td>hosting-starter-03</td>
+                                            <td>Service renewal required within 30 days</td>
+                                            <td>System</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Login to HostPanel
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="loginEmail" placeholder="Email Address" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                Remember me
+                            </label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" data-bs-dismiss="modal">
+                                Forgot Password?
+                            </a>
+                        </div>
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <span class="auth-switch-text">Don't have an account? </span>
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">
+                                Sign Up
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">
+                        <i class="bi bi-person-plus me-2"></i>Create New Account
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="signupName" placeholder="Full Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="signupEmail" placeholder="Email Address" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="signupPassword" placeholder="Password (min. 8 characters)" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" id="signupConfirmPassword" placeholder="Confirm Password" required>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">
+                                I agree to the <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#termsModal">Terms & Conditions</a> and <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                            </label>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-person-plus me-2"></i>Create Account
+                            </button>
+                        </div>
+                        <hr class="my-4">
+                        <div class="text-center">
+                            <span class="auth-switch-text">Already have an account? </span>
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">
+                                Login
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">
+                        <i class="bi bi-key me-2"></i>Reset Password
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted mb-4">Enter your email address and we'll send you a link to reset your password.</p>
+                    <form id="forgotPasswordForm">
+                        <div class="mb-3">
+                            <input type="email" class="form-control" id="forgotEmail" placeholder="Email Address" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-send me-2"></i>Send Reset Link
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#loginModal" data-bs-dismiss="modal">
+                                <i class="bi bi-arrow-left me-1"></i>Back to Login
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Dropdown Modals -->
+    
+    <!-- Notifications Modal -->
+    <div class="modal fade" id="notificationsModal" tabindex="-1" aria-labelledby="notificationsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="notificationsModalLabel">
+                        <i class="bi bi-bell me-2"></i>Notifications
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-icon status-success">
+                                <i class="bi bi-check-circle-fill"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-text">SSL certificate renewed for <strong>example.com</strong></div>
+                                <div class="activity-time">2 hours ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon status-warning">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-text">Domain <strong>testsite.net</strong> expires in 15 days</div>
+                                <div class="activity-time">1 day ago</div>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon status-info">
+                                <i class="bi bi-info-circle-fill"></i>
+                            </div>
+                            <div class="activity-details">
+                                <div class="activity-text">Scheduled maintenance on December 20, 2025</div>
+                                <div class="activity-time">3 days ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">
+                        <i class="bi bi-gear me-2"></i>Settings
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="settingsForm">
+                        <div class="mb-3">
+                            <label class="form-label">Email Notifications</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="emailNotifications" checked>
+                                <label class="form-check-label" for="emailNotifications">Receive email notifications</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">SMS Notifications</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="smsNotifications">
+                                <label class="form-check-label" for="smsNotifications">Receive SMS notifications</label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Theme</label>
+                            <select class="form-select" id="themeSelect">
+                                <option value="dark" selected>Dark</option>
+                                <option value="light">Light</option>
+                                <option value="auto">Auto</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Language</label>
+                            <select class="form-select" id="languageSelect">
+                                <option value="en" selected>English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle me-2"></i>Save Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">
+                        <i class="bi bi-person me-2"></i>Profile
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="profileName" placeholder="John Doe" value="John Doe">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="profileEmail" placeholder="john@example.com" value="john@example.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="profilePhone" placeholder="+1 (555) 123-4567" value="+1 (555) 123-4567">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Company</label>
+                            <input type="text" class="form-control" id="profileCompany" placeholder="Company Name" value="Acme Inc.">
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-circle me-2"></i>Update Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Billing Modal -->
+    <div class="modal fade" id="billingModal" tabindex="-1" aria-labelledby="billingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="billingModalLabel">
+                        <i class="bi bi-credit-card me-2"></i>Billing Information
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <h6 class="mb-3">Payment Methods</h6>
+                        <div class="card mb-3" style="background: rgba(35, 35, 35, 0.8); border-color: var(--border-default);">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="bi bi-credit-card me-2"></i>
+                                    <strong>**** **** **** 4242</strong>
+                                    <span class="text-muted ms-2">Expires 12/2026</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="bi bi-plus-circle me-2"></i>Add Payment Method
+                        </button>
+                    </div>
+                    <div>
+                        <h6 class="mb-3">Billing History</h6>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Dec 15, 2025</td>
+                                        <td>$99.99</td>
+                                        <td><span class="status-badge status-success">Paid</span></td>
+                                        <td><a href="#" class="text-decoration-none">Download</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nov 15, 2025</td>
+                                        <td>$99.99</td>
+                                        <td><span class="status-badge status-success">Paid</span></td>
+                                        <td><a href="#" class="text-decoration-none">Download</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center mb-4">Are you sure you want to logout?</p>
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-primary" id="confirmLogout">
+                            <i class="bi bi-box-arrow-right me-2"></i>Yes, Logout
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Modals -->
+    
+    <!-- Add New Service Modal -->
+    <div class="modal fade" id="addServiceModal" tabindex="-1" aria-labelledby="addServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addServiceModalLabel">
+                        <i class="bi bi-plus-circle me-2"></i>Add New Service
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addServiceForm">
+                        <div class="mb-3">
+                            <label class="form-label">Service Type</label>
+                            <select class="form-select" id="serviceType" required>
+                                <option value="">Select service type</option>
+                                <option value="hosting">Web Hosting</option>
+                                <option value="vps">VPS</option>
+                                <option value="dedicated">Dedicated Server</option>
+                                <option value="email">Email Hosting</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Plan</label>
+                            <select class="form-select" id="servicePlan" required>
+                                <option value="">Select plan</option>
+                                <option value="starter">Starter</option>
+                                <option value="standard">Standard</option>
+                                <option value="business">Business Pro</option>
+                                <option value="enterprise">Enterprise</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Service Name</label>
+                            <input type="text" class="form-control" id="serviceName" placeholder="my-service-01" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-2"></i>Create Service
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Domain Modal -->
+    <div class="modal fade" id="registerDomainModal" tabindex="-1" aria-labelledby="registerDomainModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerDomainModalLabel">
+                        <i class="bi bi-globe me-2"></i>Register Domain
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerDomainForm">
+                        <div class="mb-3">
+                            <label class="form-label">Domain Name</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="domainName" placeholder="example" required>
+                                <select class="form-select" id="domainExtension" style="max-width: 120px;">
+                                    <option>.com</option>
+                                    <option>.net</option>
+                                    <option>.org</option>
+                                    <option>.io</option>
+                                    <option>.dev</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Registration Period</label>
+                            <select class="form-select" id="domainPeriod" required>
+                                <option value="1">1 Year - $12.99</option>
+                                <option value="2">2 Years - $24.99</option>
+                                <option value="3">3 Years - $36.99</option>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-globe me-2"></i>Register Domain
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Invoices Modal -->
+    <div class="modal fade" id="viewInvoicesModal" tabindex="-1" aria-labelledby="viewInvoicesModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewInvoicesModalLabel">
+                        <i class="bi bi-file-earmark-text me-2"></i>Invoices
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Invoice #</th>
+                                    <th>Date</th>
+                                    <th>Service</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#INV-2025-001</td>
+                                    <td>Dec 15, 2025</td>
+                                    <td>Business Pro Hosting</td>
+                                    <td>$99.99</td>
+                                    <td><span class="status-badge status-success">Paid</span></td>
+                                    <td><button class="btn btn-sm btn-outline-primary">Download</button></td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-2025-002</td>
+                                    <td>Nov 15, 2025</td>
+                                    <td>Business Pro Hosting</td>
+                                    <td>$99.99</td>
+                                    <td><span class="status-badge status-success">Paid</span></td>
+                                    <td><button class="btn btn-sm btn-outline-primary">Download</button></td>
+                                </tr>
+                                <tr>
+                                    <td>#INV-2025-003</td>
+                                    <td>Oct 15, 2025</td>
+                                    <td>Domain Registration</td>
+                                    <td>$12.99</td>
+                                    <td><span class="status-badge status-success">Paid</span></td>
+                                    <td><button class="btn btn-sm btn-outline-primary">Download</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Support Modal -->
+    <div class="modal fade" id="contactSupportModal" tabindex="-1" aria-labelledby="contactSupportModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="contactSupportModalLabel">
+                        <i class="bi bi-headset me-2"></i>Contact Support
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contactSupportForm">
+                        <div class="mb-3">
+                            <label class="form-label">Subject</label>
+                            <select class="form-select" id="supportSubject" required>
+                                <option value="">Select subject</option>
+                                <option value="technical">Technical Issue</option>
+                                <option value="billing">Billing Question</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Priority</label>
+                            <select class="form-select" id="supportPriority" required>
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control" id="supportMessage" rows="5" placeholder="Describe your issue or question..." required></textarea>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-send me-2"></i>Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Action Modals -->
+    
+    <!-- Manage Service Modal -->
+    <div class="modal fade" id="manageServiceModal" tabindex="-1" aria-labelledby="manageServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageServiceModalLabel">
+                        <i class="bi bi-server me-2"></i>Manage Service
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-4">
+                        <h6 id="serviceNameDisplay" class="mb-3"></h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <strong>Status:</strong> <span id="serviceStatusDisplay" class="status-badge status-success">Active</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong>Plan:</strong> <span id="servicePlanDisplay"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong>Created:</strong> <span id="serviceCreatedDisplay"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong>Renewal:</strong> <span id="serviceRenewalDisplay"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-terminal me-2"></i>Access Control Panel
+                        </button>
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-file-earmark-code me-2"></i>Manage Files
+                        </button>
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-database me-2"></i>Manage Databases
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upgrade Service Modal -->
+    <div class="modal fade" id="upgradeServiceModal" tabindex="-1" aria-labelledby="upgradeServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="upgradeServiceModalLabel">
+                        <i class="bi bi-arrow-up-circle me-2"></i>Upgrade Service
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-4">Select a plan to upgrade to:</p>
+                    <form id="upgradeServiceForm">
+                        <div class="mb-3">
+                            <label class="form-label">Current Plan</label>
+                            <input type="text" class="form-control" id="currentPlan" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Upgrade To</label>
+                            <select class="form-select" id="upgradePlan" required>
+                                <option value="">Select plan</option>
+                                <option value="standard">Standard - $49.99/mo</option>
+                                <option value="business">Business Pro - $99.99/mo</option>
+                                <option value="enterprise">Enterprise - $199.99/mo</option>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-arrow-up-circle me-2"></i>Upgrade Now
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renew Service Modal -->
+    <div class="modal fade" id="renewServiceModal" tabindex="-1" aria-labelledby="renewServiceModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="renewServiceModalLabel">
+                        <i class="bi bi-arrow-repeat me-2"></i>Renew Service
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="renewServiceForm">
+                        <div class="mb-3">
+                            <label class="form-label">Service</label>
+                            <input type="text" class="form-control" id="renewServiceName" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Renewal Period</label>
+                            <select class="form-select" id="renewPeriod" required>
+                                <option value="1">1 Year</option>
+                                <option value="2">2 Years</option>
+                                <option value="3">3 Years</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Total Amount</label>
+                            <input type="text" class="form-control" id="renewAmount" readonly>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-credit-card me-2"></i>Proceed to Payment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manage DNS Modal -->
+    <div class="modal fade" id="manageDNSModal" tabindex="-1" aria-labelledby="manageDNSModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="manageDNSModalLabel">
+                        <i class="bi bi-globe me-2"></i>Manage DNS Records
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <strong>Domain:</strong> <span id="dnsDomainName"></span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Name</th>
+                                    <th>Value</th>
+                                    <th>TTL</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A</td>
+                                    <td>@</td>
+                                    <td>192.168.1.1</td>
+                                    <td>3600</td>
+                                    <td><button class="btn btn-sm btn-outline-primary">Edit</button></td>
+                                </tr>
+                                <tr>
+                                    <td>CNAME</td>
+                                    <td>www</td>
+                                    <td>example.com</td>
+                                    <td>3600</td>
+                                    <td><button class="btn btn-sm btn-outline-primary">Edit</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-grid gap-2 mt-3">
+                        <button class="btn btn-outline-primary">
+                            <i class="bi bi-plus-circle me-2"></i>Add DNS Record
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renew Domain Modal -->
+    <div class="modal fade" id="renewDomainModal" tabindex="-1" aria-labelledby="renewDomainModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="renewDomainModalLabel">
+                        <i class="bi bi-arrow-repeat me-2"></i>Renew Domain
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="renewDomainForm">
+                        <div class="mb-3">
+                            <label class="form-label">Domain</label>
+                            <input type="text" class="form-control" id="renewDomainName" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Renewal Period</label>
+                            <select class="form-select" id="renewDomainPeriod" required>
+                                <option value="1">1 Year - $12.99</option>
+                                <option value="2">2 Years - $24.99</option>
+                                <option value="3">3 Years - $36.99</option>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-credit-card me-2"></i>Proceed to Payment
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Renew SSL Modal -->
+    <div class="modal fade" id="renewSSLModal" tabindex="-1" aria-labelledby="renewSSLModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="renewSSLModalLabel">
+                        <i class="bi bi-shield-check me-2"></i>Renew SSL Certificate
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="renewSSLForm">
+                        <div class="mb-3">
+                            <label class="form-label">Domain</label>
+                            <input type="text" class="form-control" id="sslDomainName" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">SSL Certificate Type</label>
+                            <select class="form-select" id="sslType" required>
+                                <option value="free">Free SSL (Let's Encrypt)</option>
+                                <option value="premium">Premium SSL - $49.99/year</option>
+                                <option value="wildcard">Wildcard SSL - $99.99/year</option>
+                            </select>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-shield-check me-2"></i>Renew SSL Certificate
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">
+                        <i class="bi bi-file-text me-2"></i>Terms & Conditions
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        <h6>1. Acceptance of Terms</h6>
+                        <p>By accessing and using this service, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h6>2. Use License</h6>
+                        <p>Permission is granted to temporarily use this service for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h6>3. Disclaimer</h6>
+                        <p>The materials on this service are provided on an 'as is' basis. We make no warranties, expressed or implied.</p>
+                        
+                        <h6>4. Limitations</h6>
+                        <p>In no event shall we or our suppliers be liable for any damages arising out of the use or inability to use the materials.</p>
+                        
+                        <h6>5. Revisions</h6>
+                        <p>We may revise these terms of service at any time without notice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content auth-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="privacyModalLabel">
+                        <i class="bi bi-shield-lock me-2"></i>Privacy Policy
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="max-height: 400px; overflow-y: auto;">
+                        <h6>1. Information We Collect</h6>
+                        <p>We collect information that you provide directly to us, including name, email address, and payment information.</p>
+                        
+                        <h6>2. How We Use Your Information</h6>
+                        <p>We use the information we collect to provide, maintain, and improve our services.</p>
+                        
+                        <h6>3. Information Sharing</h6>
+                        <p>We do not sell, trade, or rent your personal information to third parties.</p>
+                        
+                        <h6>4. Data Security</h6>
+                        <p>We implement appropriate security measures to protect your personal information.</p>
+                        
+                        <h6>5. Your Rights</h6>
+                        <p>You have the right to access, update, or delete your personal information at any time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+
+</body>
+</html>
