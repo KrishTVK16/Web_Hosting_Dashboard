@@ -6,6 +6,9 @@
 // Wait for DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Initialize Theme System
+    initializeTheme();
+    
     // Initialize Charts
     initializeCharts();
     
@@ -24,6 +27,45 @@ document.addEventListener('DOMContentLoaded', function() {
     // Simulate real-time data updates
     startDataUpdates();
 });
+
+/**
+ * Initialize Theme System
+ */
+function initializeTheme() {
+    // Load saved theme preference or default to light
+    const savedTheme = localStorage.getItem('dashboard-theme') || 'light';
+    applyTheme(savedTheme);
+    
+    // Set theme select dropdown value
+    const themeSelect = document.getElementById('themeSelect');
+    if (themeSelect) {
+        themeSelect.value = savedTheme;
+        
+        // Listen for theme changes
+        themeSelect.addEventListener('change', function() {
+            const selectedTheme = this.value;
+            applyTheme(selectedTheme);
+            localStorage.setItem('dashboard-theme', selectedTheme);
+            showToast(`Theme changed to ${selectedTheme === 'dark' ? 'Dark' : 'Light'}`, 'success');
+        });
+    }
+}
+
+/**
+ * Apply theme to the document
+ */
+function applyTheme(theme) {
+    const htmlElement = document.documentElement;
+    
+    // Default to light mode if theme is not specified
+    if (!theme || theme === 'light') {
+        htmlElement.setAttribute('data-theme', 'light');
+        document.body.classList.add('theme-gold-wash');
+    } else if (theme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        document.body.classList.remove('theme-gold-wash');
+    }
+}
 
 /**
  * Initialize Chart.js visualizations for server metrics
@@ -427,6 +469,10 @@ function initializeModalHandlers() {
     if (settingsForm) {
         settingsForm.addEventListener('submit', function(e) {
             e.preventDefault();
+            
+            // Theme is already handled by the select change event
+            // But we can save other settings here if needed
+            
             showToast('Settings saved successfully!', 'success');
             const modal = bootstrap.Modal.getInstance(document.getElementById('settingsModal'));
             if (modal) modal.hide();
