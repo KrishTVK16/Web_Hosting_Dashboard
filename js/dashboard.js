@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
  * Initialize Theme System
  */
 function initializeTheme() {
-    // Load saved theme preference or default to light
+    // Load saved theme preference or default to light (gold wash)
     const savedTheme = localStorage.getItem('dashboard-theme') || 'light';
     applyTheme(savedTheme);
     
