@@ -90,7 +90,7 @@ function initializeCharts() {
                 labels: ['Used', 'Available'],
                 datasets: [{
                     data: [32, 68],
-                    backgroundColor: ['#B8962E', 'rgba(184, 150, 46, 0.3)'],
+                    backgroundColor: ['#2563EB', 'rgba(37, 99, 235, 0.1)'],
                     borderWidth: 0
                 }]
             },
@@ -119,7 +119,7 @@ function initializeCharts() {
                 labels: ['Used', 'Available'],
                 datasets: [{
                     data: [38.75, 61.25], // 12.4 GB out of 32 GB
-                    backgroundColor: ['#10B981', 'rgba(16, 185, 129, 0.3)'],
+                    backgroundColor: ['#10B981', 'rgba(16, 185, 129, 0.1)'],
                     borderWidth: 0
                 }]
             },
@@ -150,7 +150,7 @@ function initializeCharts() {
                 labels: ['Used', 'Available'],
                 datasets: [{
                     data: [49, 51], // 245 GB out of 500 GB
-                    backgroundColor: ['#F59E0B', 'rgba(245, 158, 11, 0.3)'],
+                    backgroundColor: ['#F59E0B', 'rgba(245, 158, 11, 0.1)'],
                     borderWidth: 0
                 }]
             },
